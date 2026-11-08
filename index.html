@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10131c">
+  <meta name="description" content="A fast, neon-soaked 1v1 arena shooter. Jump in and challenge the rival bot.">
+  <title>Neon Rivals — 1v1 Arena</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2310131c'/%3E%3Cpath d='M13 44 26 15h9L22 44zm18 0L44 15h8L39 44z' fill='%23b7f36b'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Neon Rivals home">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span>NEON<span class="brand-light">RIVALS</span></span>
+      </a>
+      <div class="top-tag"><span class="live-dot"></span> ARENA ONLINE <span class="tag-divider">/</span> SEASON 04</div>
+      <button class="icon-button sound-toggle" id="soundToggle" aria-label="Toggle sound" title="Toggle sound"><span id="soundIcon">♫</span></button>
+    </header>
+
+    <section class="intro-row">
+      <div>
+        <div class="eyebrow"><span class="eyebrow-line"></span> QUICK MATCH <span class="eyebrow-line"></span></div>
+        <h1>ONE ARENA.<br><span>NO MERCY.</span></h1>
+        <p class="intro-copy">Lock in. Take aim. Make it count.</p>
+      </div>
+      <div class="match-note"><span class="note-icon">✳</span><span>1V1<br><b>BEST OF 3</b></span></div>
+    </section>
+
+    <section class="game-card" aria-label="Neon Rivals game">
+      <div class="arena-top">
+        <div class="fighter fighter-you">
+          <div class="avatar avatar-you"><span>U</span><i></i></div>
+          <div class="fighter-info"><div class="fighter-name">YOU <span class="rank-dot">◆</span></div><div class="fighter-sub">ROOKIE // LV. 01</div></div>
+        </div>
+        <div class="scoreboard">
+          <div class="round-label">ROUND <span id="roundNumber">01</span></div>
+          <div class="score-line"><span class="score-you" id="yourScore">0</span><span class="score-dash">:</span><span class="score-rival" id="rivalScore">0</span></div>
+          <div class="round-pips" aria-label="Rounds won"><i class="pip pip-you" id="youPip1"></i><i class="pip pip-rival" id="rivalPip1"></i><i class="pip pip-you" id="youPip2"></i><i class="pip pip-rival" id="rivalPip2"></i><i class="pip pip-you" id="youPip3"></i><i class="pip pip-rival" id="rivalPip3"></i></div>
+        </div>
+        <div class="fighter fighter-rival">
+          <div class="fighter-info"><div class="fighter-name">PIXEL <span class="bot-label">BOT</span></div><div class="fighter-sub">ARENA CHAMPION</div></div>
+          <div class="avatar avatar-rival"><span>P</span><i></i></div>
+        </div>
+      </div>
+      <div class="health-row">
+        <div class="health-track"><div class="health-fill health-blue" id="playerHealth"></div><span class="health-glint"></span></div>
+        <div class="health-meta"><span>SHIELD <b id="playerHealthText">100</b></span><span class="timer" id="timer">60.0</span><span>SHIELD <b id="rivalHealthText">100</b></span></div>
+        <div class="health-track health-track-right"><div class="health-fill health-pink" id="rivalHealth"></div><span class="health-glint"></span></div>
+      </div>
+      <div class="canvas-wrap" id="canvasWrap">
+        <canvas id="gameCanvas" aria-label="2D Neon Rivals arena. Use the controls to move, aim and shoot."></canvas>
+        <div class="screen-overlay" id="screenOverlay">
+          <div class="overlay-content" id="overlayContent">
+            <div class="overlay-kicker"><span>01</span> READY PLAYER ONE</div>
+            <h2>STEP INTO<br><em>THE ARENA</em></h2>
+            <p>First to two round wins takes the match.<br>Jump, dodge, and send it back.</p>
+            <button class="primary-button" id="startButton"><span>START MATCH</span><b>↗</b></button>
+            <div class="overlay-foot"><span class="keycap">A</span><span class="keycap">D</span> MOVE <span class="foot-dot">·</span> <span class="keycap">W</span> JUMP <span class="foot-dot">·</span> <span class="keycap">↑</span><span class="keycap">↓</span> AIM <span class="foot-dot">·</span> <span class="keycap">SPACE</span> FIRE</div>
+          </div>
+        </div>
+        <div class="arena-corner corner-tl"></div><div class="arena-corner corner-tr"></div><div class="arena-corner corner-bl"></div><div class="arena-corner corner-br"></div>
+        <div class="canvas-hud"><span><i class="hud-live"></i> LIVE FEED</span><span>SECTOR 07 — MIDTOWN</span></div>
+      </div>
+      <div class="game-controls">
+        <div class="move-controls">
+          <button class="control-button move-button" data-action="left" aria-label="Move left"><span>←</span><small>LEFT</small></button>
+          <button class="control-button move-button" data-action="right" aria-label="Move right"><span>→</span><small>RIGHT</small></button>
+          <button class="control-button jump-button" data-action="jump" aria-label="Jump"><span>↟</span><small>JUMP</small></button>
+        </div>
+        <div class="aim-controls">
+          <span class="aim-label">AIM</span>
+          <button class="control-button aim-button" data-action="aimUp" aria-label="Aim higher">＋</button>
+          <button class="control-button aim-button" data-action="aimDown" aria-label="Aim lower">−</button>
+        </div>
+        <button class="fire-button" id="fireButton" aria-label="Hold to fire"><span class="fire-icon">✳</span><span>HOLD TO FIRE</span><i></i></button>
+      </div>
+      <div class="game-footer"><span><span class="footer-dot"></span> MATCHMAKING: <b>BOT DUEL</b></span><button id="pauseButton" class="pause-button"><span>Ⅱ</span> PAUSE</button><span class="latency">PING <b>24 MS</b></span></div>
+    </section>
+
+    <section class="bottom-row">
+      <div class="tip-card"><span class="tip-symbol">⌁</span><div><span class="tip-label">FIELD TIP // 001</span><p>Keep moving. A still target is a <b>sure hit.</b></p></div></div>
+      <div class="controls-legend"><span class="legend-label">DESKTOP</span><span><kbd>A</kbd><kbd>D</kbd> MOVE</span><span><kbd>W</kbd> JUMP</span><span><kbd>↑</kbd><kbd>↓</kbd> AIM</span><span><kbd>SPACE</kbd> FIRE</span></div>
+    </section>
+    <footer class="site-footer"><span>© 2089 NEON RIVALS ARENA</span><span>BUILT FOR THE BOLD <b>✳</b></span><span>NO CAMPING. NO EXCUSES.</span></footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
